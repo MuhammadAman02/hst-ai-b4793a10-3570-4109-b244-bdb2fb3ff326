@@ -1,12 +1,32 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { ChatInterface } from '@/components/ChatInterface';
+import { ApiKeyInput } from '@/components/ApiKeyInput';
 
 const Index = () => {
+  const [apiKey, setApiKey] = useState<string>('');
+  const [hasApiKey, setHasApiKey] = useState<boolean>(false);
+
+  console.log('Index component rendered, hasApiKey:', hasApiKey);
+
+  const handleApiKeySubmit = (key: string) => {
+    console.log('API key submitted, length:', key.length);
+    setApiKey(key);
+    setHasApiKey(true);
+  };
+
+  const handleResetApiKey = () => {
+    console.log('Resetting API key');
+    setApiKey('');
+    setHasApiKey(false);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {!hasApiKey ? (
+        <ApiKeyInput onApiKeySubmit={handleApiKeySubmit} />
+      ) : (
+        <ChatInterface apiKey={apiKey} onResetApiKey={handleResetApiKey} />
+      )}
     </div>
   );
 };
