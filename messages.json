@@ -1,0 +1,6 @@
+[
+  {
+    "role": "user",
+    "content": "The deployment failed with the following error from Fly.io:\n\n2025/06/04 17:09:56 error releasing builder: canceled: context canceled\n==> Building image\nWaiting for depot builder...\n\nPlease fix the issue."
+  }
+]
